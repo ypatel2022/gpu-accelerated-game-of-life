@@ -1,21 +1,30 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-
 #include "board.h"
+#include <SFML/Graphics.hpp>
+#include <cuda_runtime.h>
+#include <device_launch_parameters.h>
+#include <iostream>
 
 int main()
 {
-    uint32_t width = 1024u;
-    uint32_t height = 1024u;
+    uint32_t width = 1440;
+    uint32_t height = 1440;
     bool start = true;
 
     sf::RenderWindow window = sf::RenderWindow { { width, height }, "Cuda Accelerated Game of Life", sf::Style::Titlebar | sf::Style::Close };
-    window.setVerticalSyncEnabled(true);
-    window.setFramerateLimit(60);
 
-    Board board = Board(window, 512, true);
+    Board board = Board(window, 1440, true);
+
+    sf::Clock clock;
+    float lastTime = 0;
 
     while (window.isOpen()) {
+        float currentTime = clock.restart().asSeconds();
+        float fps = 1.f / currentTime;
+
+        lastTime = currentTime;
+
+        std::cout << fps << '\n';
+
         for (auto event = sf::Event {}; window.pollEvent(event);) {
 
             switch (event.type) {

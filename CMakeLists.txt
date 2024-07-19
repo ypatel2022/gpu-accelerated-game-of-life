@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(CudaAcceleratedGameOfLife LANGUAGES CXX)
+project(CudaAcceleratedGameOfLife LANGUAGES CXX CUDA)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
@@ -10,8 +10,8 @@ FetchContent_Declare(SFML
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
 
-file(GLOB_RECURSE SOURCES "src/*.cpp")
-file(GLOB_RECURSE HEADERS "src/*.h" "src/*.hpp")
+file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.cu")
+file(GLOB_RECURSE HEADERS "src/*.h" "src/*.hpp" "src/*.cuh")
 
 add_executable(CudaAcceleratedGameOfLife ${SOURCES} ${HEADERS})
 

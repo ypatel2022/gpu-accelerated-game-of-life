@@ -34,12 +34,13 @@ This project was created using this [template](https://github.com/SFML/cmake-sfm
 
     For a multi-configuration generator (typically the case on Windows):
     ```
-    cmake -S . -B build
-    cmake --build build --config Release
+    mkdir build
+    cd build
+    cmake .. -DCMAKE_CUDA_ARCHITECTURES=86
     ```
 1. Enjoy!
 
 
 ## License
 
-The source code is dual licensed under Public Domain and MIT -- choose whichever you prefer.
+The source code is dual licensed under MIT.

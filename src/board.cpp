@@ -1,5 +1,4 @@
 #include "board.h"
-#include "utils.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <stdlib.h>
@@ -85,6 +84,11 @@ void Board::drawBoard()
     }
 
     window.draw(vertexArray);
+}
+
+bool outOfRange(int n, int min, int max)
+{
+    return n < min || n > max;
 }
 
 void Board::processInput(sf::Event& event)
